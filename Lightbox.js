@@ -1,4 +1,4 @@
-const Images = document.querySelectorAll(".preview img");
+const thumbnails = document.querySelectorAll(".preview img");
 const lightbox = document.querySelector(".lightbox");
 const closeLightboxBtn = document.querySelector(".close__lightbox");
 const mainThumbnail = document.querySelector(".bg__product");
@@ -13,13 +13,13 @@ function closeLightBox() {
     lightbox.classList.remove("invisible");
   }
 
-  Images.forEach((image) => {
-    image.addEventListener("click", () => {
-      const lastImg = document.querySelectorAll(".selected");
+  thumbnails.forEach((Thumbnail, index) => {
+    Thumbnail.addEventListener("click", () => {
+      const lastImg = document.querySelector(".preview img.selected");
       if (lastImg){
         lastImg[0].classList.remove(".selected");
       }
-      image.classList.add(".selected");
+      Thumbnail.classList.add(".selected");
       const selectedImg = document.querySelector(".selected");
       switch(selectedImg.getAttribute("src")){
         case "./images/image-product-1-thumbnail.jpg":
@@ -39,6 +39,7 @@ function closeLightBox() {
         mainThumbnailLightBox.src = "./images/image-product-4.jpg";
         break;
       }
+      console.log("Clicked thumbnail index:", index);
     });
   });
 
